@@ -43,6 +43,8 @@ jobs:
           curl -sSL https://www.cloudflare.com/ips-v4 | grep "/" >> data/cloudflare
           curl -sSL https://www.cloudflare.com/ips-v6 | grep "/" >> data/cloudflare
           curl -sSL https://api.fastly.com/public-ip-list | jq --raw-output '.addresses[],.ipv6_addresses[]' >> data/fastly
+          curl -sSL https://ispip.clang.cn/all_cn.txt | grep "/" >> data/cnipv4
+          curl -sSL https://ispip.clang.cn/all_cn_ipv6.txt | grep "/" >> data/cnipv6
           curl -sSL https://ip-ranges.amazonaws.com/ip-ranges.json | jq --raw-output '.prefixes[],.ipv6_prefixes[] | select(.service == "CLOUDFRONT") | .ip_prefix,.ipv6_prefix' | grep "/" >> data/cloudfront
 
       - name: Get GeoLite2
