@@ -30,6 +30,32 @@
       "type": "text",
       "action": "add",
       "args": {
+        "name": "cn",
+        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt",
+        "onlyIPType": "ipv4"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cn",
+        "uri": "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt",
+        "onlyIPType": "ipv6"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "telegram",
+        "uri": "https://core.telegram.org/resources/cidr.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
         "inputDir": "./data"
       }
     },
@@ -83,7 +109,19 @@
       "type": "maxmindMMDB",
       "action": "output",
       "args": {
-        "outputName": "Country.mmdb"
+        "outputName": "Country.mmdb",
+        "overwriteList": [
+          "cn",
+          "private",
+          "cloudflare",
+          "cloudfront",
+          "facebook",
+          "fastly",
+          "google",
+          "netflix",
+          "telegram",
+          "twitter"
+        ]
       }
     },
     {
@@ -92,6 +130,23 @@
       "args": {
         "outputName": "Country-only-cn-private.mmdb",
         "wantedList": ["cn", "private"]
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "Country-asn.mmdb",
+        "wantedList": [
+          "cloudflare",
+          "cloudfront",
+          "facebook",
+          "fastly",
+          "google",
+          "netflix",
+          "telegram",
+          "twitter"
+        ]
       }
     },
     {
